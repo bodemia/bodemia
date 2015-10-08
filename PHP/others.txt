@@ -1,0 +1,198 @@
+# su
+# yum install php
+# yum install httpd
+# yum install mysql mysql-server
+# service mysqld start
+# service httpd restart
+
+1.PHP Include the request for user input and the response in the same file
+2.PHP to find Sum and Average of given n numbers.
+<html>
+<body>
+<?php
+if(!isset($_POST['sub']))
+{
+?>
+<form method="post" action="Sum.php">
+Enter the Values:<input type="text" name="inp">
+<center><input type="submit" name="sub" value="calculate"/></center><br><br>
+</form>
+<?php
+}
+else
+{
+$num=$_POST['inp'];
+$sum=0;
+$avg=0;
+for($i=1;$i<=$num;$i++)
+{
+$sum=$sum+$i;
+}
+$avg=$sum/$num;
+echo "The input value is: $num<br>";
+echo "The sum value is: $sum<br>";
+echo "The average value is: $avg<br>";
+}
+?>
+</body>
+</html>
+
+3.PHP to Display Date Information
+<html>
+<body>
+<?php
+$today = getdate();
+print_r($today);
+?>
+</body>
+</html>
+
+4.PHP to generate Random numbers
+<html>
+<body>
+<?php
+echo rand(1,20)."\n";
+?>
+</body>
+</html>
+
+5.PHP to count the no of user visit website
+<?php
+session_start();
+if(isset($_SESSION['count']))
+{
+ $get=$_SESSION['count'];
+ $get++;
+ $_SESSION[count]=$get;
+}
+else
+{
+	$_SESSION['count']=1;
+}
+echo "Visit count:",$_SESSION['count'];
+?>
+
+6.PHP to add user input to array
+<html>
+<body>
+<h2>How Are You Traveling?</h2>
+<?php
+if (!isset($_POST['submit'])){
+$travel=array
+(
+"Automobile",
+"Jet",
+"Ferry",
+"Subway"
+);
+?>
+<p>Travel takes many forms, whether across town, across the country, or
+around the world. Here is a list of some common modes of
+transportation:</p>
+<ul>
+<?php
+foreach ($travel as $t)
+{
+echo "<li>$t</li>\n";
+}
+?>
+</ul>
+<form method="post" action="yourfile.php">
+<p>Please add your favorite, local, or even imaginary modes of travel
+to the list, separated by commas:</p>
+<input type="text" name="added" size="80" />
+<p/>
+<?php
+foreach ($travel as $t){
+echo "<input type=\"hidden\" name=\"travel[]\" value=\"$t\" />\n";
+}
+?>
+<input type="submit" name="submit" value="Go" />
+</form>
+<?php
+}else{
+$travel=($_POST['travel']);
+$added=explode(',',$_POST['added']);
+array_splice($travel, count($travel), 0, $added);
+
+echo "<p>Here is the list with your additions:</p>\n<ul>\n";
+foreach($travel as $t){
+echo "<li>".trim($t)."</li>\n";
+}
+echo"</ul>";
+?>
+<p>Add more?</p>
+<form method="post" action="yourfile.php">
+<input type="text" name="added" size="80" />
+<p />
+<?php
+foreach ($travel as $t){
+echo "<input type=\"hidden\" name=\"travel[]\" value=\"$t\" />\n";
+}
+?>
+<input type="submit" name="submit" value="Go" />
+</form>
+<?php
+}
+?>
+</body>
+</html>
+
+7.PHP to update a  mysql
+gedit  Login_db.html
+<html>
+<body>
+<form method="post" action="Login_db.php">
+UserName:<input type="text" name="usr"><br><br>
+Password:<input type="password" name="pwd"><br><br>
+<center><input type="submit" name="sub" value="Login"/></center><br><br>
+</form>
+</body>
+</html>
+
+gedit  Login_db.php
+
+<?php
+$host="localhost";
+$username="root";
+$password="ssn";
+$db_name="test";
+$tbl_name="login";
+$conn = mysql_connect("$host", "$username", "$password")or die("cannot connect");
+mysql_select_db("$db_name")or die("cannot select DB");
+$myusername=$_POST['usr'];
+$mypassword=$_POST['pwd'];
+$myusername = stripslashes($myusername);
+$mypassword = stripslashes($mypassword);
+$myusername = mysql_real_escape_string($myusername);
+$mypassword = mysql_real_escape_string($mypassword);
+$sql="update $tbl_name set password='$mypassword' WHERE username='$myusername'";
+$result=mysql_query($sql,$conn);
+$count=mysql_num_rows($result);
+?>
+Browser to type url ->http://localhost/Login_db.html
+7.PHP to Login Details without_db
+gedit Login_normal.html
+
+<html>
+<body>
+<form method="post" action="Login_normal.php">
+UserName:<input type="text" name="usr"><br><br>
+Password:<input type="password" name="pwd"><br><br>
+<center><input type="submit" name="sub" value="Login"/></center><br><br>
+</form>
+</body>
+</html>
+gedit Login_normal.php
+<?php
+$usr=$_POST['usr'];
+$pwd=$_POST['pwd'];
+if($usr=="root" && $pwd=="root")
+{
+echo "Login Successfully<br>";
+}
+else
+{
+echo "Login Failed<br>";
+}
+?>

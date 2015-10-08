@@ -1,0 +1,6 @@
+# yum install qt-devel qt-demos qt-examples qt-doc
+//
+# qmake-qt4 -project
+# qmake-qt4
+# make
+# ./qthello

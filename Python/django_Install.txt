@@ -1,0 +1,22 @@
+apt-get install python-django
+
+to create and run:
+
+django-admin startproject mysite
+cd mysite
+django-admin startapp web
+python manage.py runserver
+
+go to http://localhost:8000/abc
+
+*for the blog application, just download from the HOLY SOURCE and just run python manage.py runserver
+go to http://localhost:8000/posts/new/*
+
+Directory Structure:
+mysite
+  -mysite
+    -urls.py
+  -web
+    -views.py
+  -manage.py
+

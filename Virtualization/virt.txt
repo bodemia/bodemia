@@ -1,0 +1,8 @@
+# Virtualization
+
+# yum install xen virt­manager qemu libvirt
+# virt-manager &
+// follow onscreen instructions
+(give file->connect)
+(right click on localhost QEMU to create a new vm)
+

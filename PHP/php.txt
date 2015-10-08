@@ -1,0 +1,6 @@
+php:
+
+apt-get install apache2
+apt-get install php5
+apt-get install libapache2-mod-php5
+

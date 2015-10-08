@@ -1,0 +1,65 @@
+SAMBA:
+
+# su
+# yum install samba
+# yum install samba-client
+
+# service smb status
+# service smb start
+
+# useradd  <username>
+# passwd <username>
+
+# smbpasswd –a <username>
+# setsebool samba_enable_home_dirs on
+
+NOTE: if bad connection occurs(happens rarely :P)
+	gedit /etc/samba/smb.conf
+	search for interfaces
+	add ip of windows  in allowhost
+	add ip of fedora with netmask in the interfaces
+	restart samba if u change smb.conf
+# smbclient  \\\\localhost\\<username> –U<username>
+# mkdir  test
+# exit
+
+>>Windows to
+>>Run->\\<fedora’s ip> ->username->password
+
+OR
+
+# yum install samba
+# service smbd start (or) service smb start
+# gedit /etc/samba/smb.conf
+
+[share]
+    comment = Ubuntu File Server Share
+    path = /share
+    browsable = yes
+    guest ok = yes
+    read only = no
+    create mask = 0755
+
+# mkdir /share
+# chown nobody:nogroup /share
+# service smb restart
+
+# smbpasswd USER_NAME_IN_THE_PC
+
+# smbclient -L localhost -U USER_NAME_IN_THE_PC
+
+# smbclient //localhost/share -U USER_NAME_IN_THE_PC
+
+
+
+CUPS:
+
+for cups:
+apt-get install cups
+apt-get install system-config-printer
+
+then go to the browser and enter the url: http://localhost:631
+then click on "Adding printers and classes"
+in the next page click "Add printers"
+enter the root username and password
+choose the printer in the "Discovered network printers" section and proceed

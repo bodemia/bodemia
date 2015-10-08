@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+<title> My Blog Post </title>
+{% endblock %}
+{% block content %}
+<center><h3><font color="green">My Blog Post </font></h3></center>
+<form action="/posts/add/" method="POST">
+{% csrf_token %}
+<table>
+{{ postform.as_table }}
+<tr>
+<td>
+<input type="submit" id="post" value="Add Post">
+</td>
+</tr>
+</table>
+<hr>
+<center><h3><font color="red">Old Blog Post </font></h3></center>
+{% if posts %}
+<table>
+<!­­ <tr><td width="40%"><strong>Title</strong></td><td 
+width="60%"><strong><font color="blue">Body</font></strong></td></tr> 
+­­>
+{% for post in posts %}
+<tr><td>
+<h5><font color="blue">{{post.title }}</font><h5><br>
+<h6>&nbsp;{{post.body }}</h6>
+</td></tr>
+{% endfor %}
+</table>
+{% else %}
+<br>
+<span><strong>No posts available<strong></span><br>
+{% endif %}
+{% endblock %}

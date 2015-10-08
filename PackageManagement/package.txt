@@ -1,0 +1,64 @@
+Package management:
+
+yum install createrepo
+yum install httpd
+service httpd start or service apache2 start
+mkdir -p /var/www/html/repo/
+
+download rpm files for any software and place it in the repo folder
+
+createrepo /var/www/html/repo/
+chmod -R ugo+rX /var/www/html/repo
+
+#######gedit /etc/yum.repos.d/test.repo
+[repo]
+name=myrepo
+baseurl=http://<IP_ADDRESS>/repo/
+enabled=1
+
+yum update
+
+#######after that we can install the software using the command: apt-get install SOFTWARE_IN_REPO_FOLDER
+
+gedit /etc/httpd/conf/httpd.conf
+
+// make sure the below looks the same ("Require all granted" is strict)
+<Directory /var/www/>
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+</Directory>
+
+// if it is not working let it be like this
+<Directory /var/www/>
+    Order Allow,Deny
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+    Allow from all
+</Directory>
+
+systemctl restart httpd
+systemctl disable firewalld
+systemctl stop firewalld
+
+we can also see the repo by typing http://localhost/repo in the browser
+
+
+
+## To do using FTP
+
+su
+yum install vsftpd
+service vsftpd restart
+cd \ var
+mkdir ftp
+cd ftp
+mkdir test
+cd test
+cat > ssn.c
+SSN College
+Ctrl+d
+cd ..
+createrepo test/
+Browerto type url->ftp://localhost

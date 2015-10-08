@@ -1,0 +1,24 @@
+// Install
+# yum install fuse-devel
+# apt-get install libfuse-dev
+
+// make dir
+# gedit hello.c
+// copy code
+
+# gcc -Wall `pkg-config fuse --cflags --libs` hello.c -o hello
+
+# mkdir tmp
+
+# ls tmp/
+
+# ./hello tmp/
+
+# ls tmp/
+hello
+
+# cat tmp/hello
+Hello World!
+
+//Unmount the file system.
+# umount tmp/

@@ -1,0 +1,30 @@
+# service NetworkManager status
+
+# service network status
+
+# ifconfig
+## service network start
+
+## ifconfig
+
+## service NetworkManager stop
+
+## ifconfig
+
+## ifconfig eth1 down
+
+## ifconfig
+
+## dhclient eth1
+
+## ifconfig
+
+## ifconfig eth1 <inet addr> netmask <subnet addr> up
+
+# route -n
+
+## route add default gw 10.6.130.1
+
+# route -n
+
+//The ## Commands should not executed if you execute that commands internet connectivity for your computer or entire lab will be last.

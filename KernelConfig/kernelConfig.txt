@@ -1,0 +1,23 @@
+# Kernel Configuration
+
+// Linux kernel archives
+// Now i've downlaoded the 4.2.2 kernel and installed the following for compilation
+
+# wget "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.2.2.tar.xz"
+# tar -xvJf *.tar
+
+# cd in/to/dir/linux/kernel
+
+// # yum install fedpkg fedora-packager rpmdevtools
+# yum install kernel-devel ncurses-devel
+# yum install qt3-devel libXi-devel gcc-c++
+
+# make mrproper
+# make menuconfig
+# make
+# make modules
+# make modules_install
+# make install
+
+# sudo reboot
+# uname -r

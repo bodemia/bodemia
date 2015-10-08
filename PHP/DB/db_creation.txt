@@ -1,0 +1,11 @@
+# yum install mysql mysql-server
+# service mysqld start
+# service httpd restart
+
+# mysql -p -u root
+# Create database members;
+# use members
+
+# CREATE TABLE `members` (`id` int(4),`username` varchar(65),`password` varchar(65));
+
+INSERT INTO `members` VALUES (1, 'john', '1234');

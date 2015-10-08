@@ -1,0 +1,124 @@
+Make
+
+# mkdir gnumake
+# cd gnumake
+# gedit abc.c
+// type a program
+
+// A simple program that computes the square root of a number
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main (int argc, char* argv[])
+{
+float num = atof(argv[1]);
+printf("The square root of %g is %g\n",num, sqrt(num));
+return 0;
+}
+
+
+# gcc abc.c -o abc -lm
+# ./abc 49
+
+# gedit Makefile
+// same name
+# Commands start with TAB not spaces
+CC  = gcc
+CFLAGS  = -g
+LDFLAGS = -lm
+all: abc
+abc: abc.o
+abc.o: abc.c
+clean:
+  rm -f abc abc.o
+
+// alternate file
+all:	abc
+abc:	abc.o
+	gcc abc.o -lm -o abc
+abc.o:	abc.c
+	gcc -g -c -o abc.o abc.c
+clean:
+	rm -f abc abc.o
+
+
+# make
+# make clean
+# make
+# ./abc
+
+
+CMake
+
+# yum install cmake
+# mkdir cmake
+# cd cmake
+
+# gedit CMakeLists.txt
+//
+cmake_minimum_required (VERSION 2.6)
+project (abc)
+add_executable(abc abc.c)
+TARGET_LINK_LIBRARIES(abc m)
+
+# mkdir build
+# cd build
+# cmake ..
+# make
+# ./abc 49
+
+
+ANT
+# yum install java ant
+Directory Structure
+  -ant
+    -build/jar
+    -build/classes/
+    -src/hello/
+    -build.xml
+
+# gedit src/hello/HelloWorld.java
+// put in src/hello/
+package hello;
+public class HelloWorld {
+public static void main(String[] args) {
+System.out.println("Hello World");
+}
+}
+
+# gedit build.xml
+
+<project>
+  <target name="clean">
+    <delete dir="build"/>
+  </target>
+  <target name="compile">
+    <mkdir dir="build/classes"/>
+    <javac srcdir="src" destdir="build/classes"/>
+  </target>
+  <target name="jar">
+    <mkdir dir="build/jar"/>
+    <jar destfile="build/jar/HelloWorld.jar" basedir="build/classes">
+      <manifest>
+        <attribute name="Main-Class" value="hello.HelloWorld"/>
+      </manifest>
+    </jar>
+  </target>
+  <target name="run">
+    <java jar="build/jar/HelloWorld.jar" fork="true"/>
+  </target>
+</project>
+
+# ant clean
+# ant compile jar run
+
+GNU Autotools
+
+# tar -xzf hello.tar.gz
+# ./configure
+# make
+# su
+# make install
+# exit
+# make uninstall

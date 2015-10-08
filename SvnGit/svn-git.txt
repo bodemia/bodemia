@@ -1,0 +1,74 @@
+GIT
+
+// yum install git
+# git init
+# git add filename
+# git commit -m "message"
+# git status
+// echo "some text" > filename.ext
+// .gitignore
+# git status -s
+# git diff
+# git diff --cached
+# git rm filename.ext
+# git mv filenameold filenamenew
+# git log
+# git commit --amend
+// amend changes to last commit
+# git checkout --filena
+
+SVN
+# su
+# yum install mod_dav_svn subversion
+# mkdir /svn
+# mkdir /svn/repos
+# cd /svn/repos
+
+# chown -R apache.apache ../repos
+
+# svnadmin create svn-test
+
+# mkdir ~/svn-test
+# cd ~/svn-test
+
+# mkdir configurations options main
+
+# gedit configurations/test.cfg
+// Edit the above file and add some text
+
+# svn import ~/svn-test file:///svn/repos/svn-test -m "Init import"
+# chown -R apache.apache /svn/repos
+
+
+# gedit /etc/httpd/conf.d/subversion.conf
+
+<Location /repos>
+  DAV svn
+  SVNParentPath /svn/repos
+  AuthType Basic
+  AuthName "Subversion repos"
+  AuthUserFile /etc/svn-auth-conf
+  Require valid-user
+</Location>
+
+# /etc/init.d/httpd restart
+
+# htpasswd -cm /etc/svn-auth-conf student
+
+// create a new dir and CO
+
+# svn -username=student co http://localhost:80/repos/svn-test/
+
+// edit some file
+
+# svn commit -m "added a line to file1"
+
+// add a file
+
+# svn add f.txt
+// then commit
+
+# svn log http:localhost:80/repos/svn-test
+
+# svn co -r 1 http://localhost:80/repos/svn-test
+// revert back to version 1
